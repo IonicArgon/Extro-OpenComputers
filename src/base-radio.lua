@@ -57,16 +57,15 @@ function playSongs()
     math.randomseed(os.time())
     while true do
         var = math.random(0, 10)
+        os.sleep(5)
         if songTempBlacklist[var] > 2 then
-            songTempBlacklist[var] = 0
+            songTempBlacklist[var] = 1
             addresses[var].play()
             print("Currently playing: ", names[var])
             os.sleep(times[var])
             addresses[var].stop()
             addresses[var].seek(-math.huge)
             print("Tape rewound.")
-            songTempBlacklist[var] = songTempBlacklist[var] + 1
-            os.sleep(5)
         else
             songTempBlacklist[var] = songTempBlacklist[var] + 1
         end
