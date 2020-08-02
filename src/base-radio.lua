@@ -67,7 +67,7 @@ function playSongs()
             print("Tape rewound.")
             songTempBlacklist[var] = songTempBlacklist[var] + 1
             os.sleep(5)
-        else then
+        else
             songTempBlacklist[var] = songTempBlacklist[var] + 1
         end
     end
