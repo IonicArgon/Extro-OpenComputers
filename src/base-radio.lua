@@ -1,3 +1,3 @@
 local component = require("component")
 
-component.list("tape_drive")
+print(component.list("tape_drive"))
