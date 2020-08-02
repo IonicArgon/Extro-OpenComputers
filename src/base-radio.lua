@@ -38,19 +38,38 @@ times = {
     4 * 60 + 51,
     3 * 60 + 52
 }
+songTempBlacklist = {
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+}
 local var
 
 function playSongs()
     math.randomseed(os.time())
     while true do
         var = math.random(0, 10)
-        addresses[var].play()
-        print("Currently playing: ", names[var])
-        os.sleep(times[var])
-        addresses[var].stop()
-        addresses[var].seek(-math.huge)
-        print("Tape rewound.")
-        os.sleep(5)
+        if songTempBlacklist[var] > 2 then
+            songTempBlacklist[var] = 0
+            addresses[var].play()
+            print("Currently playing: ", names[var])
+            os.sleep(times[var])
+            addresses[var].stop()
+            addresses[var].seek(-math.huge)
+            print("Tape rewound.")
+            songTempBlacklist[var] = songTempBlacklist[var] + 1
+            os.sleep(5)
+        else then
+            songTempBlacklist[var] = songTempBlacklist[var] + 1
+        end
     end
 end
 
