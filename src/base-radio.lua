@@ -13,18 +13,44 @@ addresses = {
     "3f77e919-bec0-402e-99e4-4a34be2646b8"
 }
 names = {
-    "plastic love",
-    "cp violation",
-    "pizza time",
-    "haru yo koi",
-    "NGE theme",
-    "komm susser tod",
-    "night force",
-    "il vento",
-    "sector sweep",
-    "bakamitai",
-    "yi jian mei"
+    "Mariya Takeuchi - Plastic Love",
+    "Half Life 2 OST - CP Violation",
+    "Spider-Man 2 The Game OST - Pizza Theme",
+    "Yumi Matsutoya - Haru yo koi (RIGHT VERSION)",
+    "NGE OST - A Cruel Angel's Thesis (Director's Cut)",
+    "NGE EoE OST - Komm Susser Tod",
+    "D-noise - Night Force",
+    "Il Vento d'oro (LoFi Remix)",
+    "Half Life 2 OST - Sector Sweep",
+    "Yakuza OST - Baka Mitai",
+    "Fei Yu-ching - Yi Jian Mei"
+}
+times = {
+    7 * 60 + 56,
+    60 + 45,
+    60 + 27,
+    4 * 60 + 23,
+    4 * 60 + 5,
+    7 * 60 + 49,
+    2 * 60 + 51,
+    3 * 60 + 5,
+    2 * 60 + 48,
+    4 * 60 + 51,
+    3 * 60 + 52
 }
 
-component.invoke(addresses[9], "play")
-print("playing ", names[9])
+function playSongs()
+    while true do
+        math.randomseed(os.clock())
+        local var = math.random(0, 10)
+        addresses[var].play()
+        print("Currently playing: " names[var])
+        os.sleep(times[var])
+        addresses[var].stop()
+        addresses[var].seek(-math.huge)
+        print("Tape rewound.")
+        os.sleep(5)
+    end
+end
+
+playSongs()
