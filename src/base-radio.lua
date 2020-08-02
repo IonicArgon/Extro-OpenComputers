@@ -38,11 +38,12 @@ times = {
     4 * 60 + 51,
     3 * 60 + 52
 }
+local var
 
 function playSongs()
     math.randomseed(os.time())
     while true do
-        local var = math.random(0, 10)
+        var = math.random(0, 10)
         addresses[var].play()
         print("Currently playing: ", names[var])
         os.sleep(times[var])
