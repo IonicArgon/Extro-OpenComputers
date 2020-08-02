@@ -26,5 +26,5 @@ names = {
     "yi jian mei"
 }
 
-component.invoke(addresses[9], play())
+component.invoke(addresses[9], "play")
 print("playing ", names[9])
