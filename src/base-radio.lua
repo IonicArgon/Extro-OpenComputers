@@ -1,4 +1,5 @@
 local component = require("component")
+
 addresses = {
     component.proxy("74696253-673b-4fc6-9698-c4803f6e04dc"),
     component.proxy("773bfa68-327d-4114-8aaa-4c7c8c0ef29c"),
@@ -38,38 +39,39 @@ times = {
     4 * 60 + 51,
     3 * 60 + 52
 }
-songTempBlacklist = {
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-}
-local var
 
-function playSongs()
+
+function shufflePlaylist
+    print("Shuffling playlist...")
     math.randomseed(os.time())
-    while true do
-        var = math.random(0, 10)
+    for i = #addresses, 0, -1 do
+        j = math.random(0, i)
+        
+        addresses[i], addresses[j] = addresses[j], addresses[i]
+        names[i], names[j] = names[j], names[i]
+        times[i], times[j] = times[j], times[i]
+    end
+    print("Playlist shuffled.")
+end
+
+
+function playPlaylist
+    for i = 0, #addresses, 1 do
+        print("Currently playing: ", names[i])
+        addresses[i].play()
+        os.sleep(times[i])
+        addresses[i].stop()
+        addresses[i].seek(-math.huge)
         os.sleep(5)
-        if songTempBlacklist[var] > 2 then
-            songTempBlacklist[var] = 1
-            addresses[var].play()
-            print("Currently playing: ", names[var])
-            os.sleep(times[var])
-            addresses[var].stop()
-            addresses[var].seek(-math.huge)
-            print("Tape rewound.")
-        else
-            songTempBlacklist[var] = songTempBlacklist[var] + 1
-        end
     end
 end
 
-playSongs()
+
+function main
+    while true do
+        shufflePlaylist()
+        playPlaylist()
+    end
+end
+
+main()
