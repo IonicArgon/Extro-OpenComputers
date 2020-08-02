@@ -40,8 +40,8 @@ times = {
 }
 
 function playSongs()
+    math.randomseed()
     while true do
-        math.randomseed(os.clock())
         local var = math.random(0, 10)
         addresses[var].play()
         print("Currently playing: ", names[var])
