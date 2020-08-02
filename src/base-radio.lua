@@ -40,7 +40,7 @@ times = {
 }
 
 function playSongs()
-    math.randomseed()
+    math.randomseed(os.time())
     while true do
         local var = math.random(0, 10)
         addresses[var].play()
