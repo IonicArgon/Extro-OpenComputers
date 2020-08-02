@@ -10,7 +10,7 @@ addresses = {
     component.proxy("36ecee4a-edec-44c4-88f1-a0f7bbe541e5"),
     component.proxy("5dd0821c-9b67-491e-b52f-2912a041c963"),
     component.proxy("546c81ce-22a4-44ae-8654-c17790874ba2"),
-    component.proxy("3f77e919-bec0-402e-99e4-4a34be2646b8"
+    component.proxy("3f77e919-bec0-402e-99e4-4a34be2646b8")
 }
 names = {
     "Mariya Takeuchi - Plastic Love",
