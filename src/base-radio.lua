@@ -55,7 +55,7 @@ function shufflePlaylist()
 
     print("Shuffled playlist: ")
     for i = 0, #addresses, 1 do
-        print("    Song: ", names[i], " ", times[i], "s at address: ", addresses[i])
+        print("    Song: ", names[i], " | Duration: ", times[i] " seconds")
     end
     print(" ")
 end
