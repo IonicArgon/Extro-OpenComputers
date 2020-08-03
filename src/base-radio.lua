@@ -41,7 +41,7 @@ times = {
 }
 
 
-function shufflePlaylist
+function shufflePlaylist()
     print("Shuffling playlist...")
     math.randomseed(os.time())
     for i = #addresses, 0, -1 do
@@ -55,7 +55,7 @@ function shufflePlaylist
 end
 
 
-function playPlaylist
+function playPlaylist()
     for i = 0, #addresses, 1 do
         print("Currently playing: ", names[i])
         addresses[i].play()
@@ -67,7 +67,7 @@ function playPlaylist
 end
 
 
-function main
+function main()
     while true do
         shufflePlaylist()
         playPlaylist()
