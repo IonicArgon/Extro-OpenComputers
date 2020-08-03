@@ -70,7 +70,7 @@ function playPlaylist()
         addresses[i].seek(-math.huge)
         os.sleep(5)
     end
-    ri
+    print(" ")
 end
 
 
