@@ -52,6 +52,12 @@ function shufflePlaylist()
         times[i], times[j] = times[j], times[i]
     end
     print("Playlist shuffled.")
+
+    print("Shuffled playlist: ")
+    for i = 0, #addresses, 1 do
+        print("    Song: ", names[i], " ", times[i], "s at address: ", addresses[i])
+    end
+    print(" ")
 end
 
 
@@ -64,6 +70,7 @@ function playPlaylist()
         addresses[i].seek(-math.huge)
         os.sleep(5)
     end
+    print(" ")
 end
 
 
