@@ -45,7 +45,7 @@ function shufflePlaylist()
     print("Shuffling playlist...")
     math.randomseed(os.time())
     for i = #addresses, 2, -1 do
-        local j = math.random(0, #addresses)
+        local j = math.random(1, i)
         
         addresses[i], addresses[j] = addresses[j], addresses[i]
         names[i], names[j] = names[j], names[i]
