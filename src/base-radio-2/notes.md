@@ -40,7 +40,11 @@ all_tapes = {}
 
 for address, compType in c.list() do
     tape_name = c.invoke(address, "getLabel")
-    all_tapes[tape_name] = address
+    all_tapes[tape_name] = c.proxy(address)
+    --we dont really have to create a proxy to access the
+    --component but like its nicer
+    --i could always just do a c.proxy(address).play()
+    --but i mean whatever
 end
 ```
 - open up ports for receiving messages
