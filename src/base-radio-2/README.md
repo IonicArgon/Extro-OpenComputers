@@ -38,7 +38,7 @@ local c = require("component")
 
 all_tapes = {}
 
-for address, compType in c.list() do
+for address, _ in c.list() do
     tape_name = c.invoke(address, "getLabel")
     all_tapes[tape_name] = c.proxy(address)
     --we dont really have to create a proxy to access the
