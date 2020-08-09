@@ -72,10 +72,10 @@ function Play_Songs()
     modem.open(23)
     gpu.set(1, 7, "Confirming port is open... ")
     os.sleep(2)
-    gpu.set(27, 7, (modem.isOpen(23) and 'true' or 'false'))
+    gpu.set(28, 7, (modem.isOpen(23) and 'true' or 'false'))
     os.sleep(1)
     gpu.fill(1, 6, w, h, " ")
-    for i, v in ipairs(shuffled_table) do
+    for i, v in ipairs(shuffle_table) do
         gpu.set(1, 6, "Now playing: " .. song_name_table[v])
         gpu.set(1, 7, "Song " .. i .. "/" .. #shuffle_table)
         modem.broadcast(23, song_name_table[v], song_length_table[v])
