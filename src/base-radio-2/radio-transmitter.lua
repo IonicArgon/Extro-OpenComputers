@@ -41,7 +41,7 @@ function Initialization()
     shuffle_table = Shallow_Copy(list_of_ids)
     gpu.set(22, 6, " Done.")
     for i = 5, 0, -1 do
-        gpu.set(1, 7 + #list_of_ids, "Beginning shuffle in " .. i .. "...")
+        gpu.set(1, 8 + #list_of_ids, "Beginning shuffle in " .. i .. "...")
         os.sleep(1)
     end
 end
@@ -61,7 +61,7 @@ function Shuffle_Playlist()
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
     end
     for i = 5, 0, -1 do
-        gpu.set(1, 7 + #shuffle_table, "Beginning playlist in " .. i .. "...")
+        gpu.set(1, 8 + #shuffle_table, "Beginning playlist in " .. i .. "...")
         os.sleep(1)
     end
 end
