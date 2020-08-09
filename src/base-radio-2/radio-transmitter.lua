@@ -6,15 +6,7 @@ local modem = component.modem
 local song_index = require("song-index")
 
 local w, h = gpu.getResolution()
-shuffle_table = {}
-
-function Shallow_Copy(t)
-    local copy = {}
-    for i, v in pairs(t) do
-        copy[i] = v
-    end
-    return copy
-end
+local shuffle_table = {}
 
 function Print_Header()
     gpu.fill(1, 1, w, h, " ")
@@ -38,7 +30,7 @@ function Initialization()
         gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
     end
-    shuffle_table = Shallow_Copy(list_of_ids)
+    shuffle_table = table.unpack(list_of_ids)
     gpu.set(22, 6, " Done. Beginning shuffle...")
     os.sleep(5)
 end
