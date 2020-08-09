@@ -8,6 +8,7 @@ local song_index = require("song-index")
 local w, h = gpu.getResolution()
 
 function Print_Header()
+    gpu.fill(1, 1, w, h, " ")
     gpu.setBackground(0x000000)
     gpu.setForeground(0xCC0000)
     for i = 1, 3, 2 do
@@ -20,16 +21,32 @@ function Print_Header()
 end
 
 function Initialization()
-    gpu.set(1, 6, "Fetching I.D. list... ")
+    math.randomseed(os.time())
+    gpu.set(1, 6, "Fetching I.D. list...")
     gpu.set(1, 7, "I.Ds fetched:")
     for i, v in ipairs(list_of_ids) do
         gpu.set(1, 7 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
         gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
-        os.sleep(0.25)
     end
-    gpu.set(22, 6, "Done.")
-    term.setCursor(1, 12)
+    gpu.set(22, 6, " Done. Beginning shuffle...")
+    os.sleep(5)
+end
+
+function Shuffle_Playlist()
+    gpu.fill(1, 6, w, h, " ")
+    gpu.set(1, 7, "Shuffling playlist...")
+    for i = table.getn(list_of_ids), 1, -1 do
+        local j = math.random(1, i)
+        list_of_ids[i], list_of_ids[j] = list_of_ids[j], list_of_ids[i]
+    end
+    gpu.set(22, 7, " Done.")
+    gpu.set(1, 8, "Shuffled list: ")
+    for i, v in ipairs(list_of_ids) do
+        gpu.set(1, 8 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
+        gpu.set(20, 8 + i, "Length: " .. song_length_table[v] .. "s")
+        gpu.set(38, 8 + i, "Title: " .. song_name_table[v])
+    end
 end
 
 Print_Header()
