@@ -57,7 +57,7 @@ function Print_Headers()
 end
 
 -- Opens ports and probes them
-function Intialize_Ports()
+local Initialize_Ports = coroutine.create(function ()
     Safe_Print(1, 6, "[PORT] Port initialization begins...")
     Safe_Print(1, 7, "[PORT] Opening port 23...")
     while modem.isOpen(23) ~= true do
@@ -67,20 +67,18 @@ function Intialize_Ports()
     -- Will add code to ping the radio receivers later.
     Safe_Print(1, 9, "[PORT] Port initialization complete.")
     return true
-end
+end)
 
-function Get_Song_Index()
+local Get_Song_Index = coroutine.create(function ()
 
     return true
-end
+end)
 
 
 -- //Main Functions//
 function Initialize()
     Print_Headers()
-    init_co_one = coroutine.create(Initialize_Ports())
-    init_co_two = coroutine.create(Get_Song_Index())
-    local _ , _ = coroutine.resume(init_co_one), coroutine.resume(init_co_two)
+    local _, _ = coroutine.resume(Initialize_Ports), coroutine.resume(Get_Song_Index)
 end
 
 function Main()
