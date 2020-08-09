@@ -6,6 +6,7 @@ local modem = component.modem
 local song_index = require("song-index")
 
 local w, h = gpu.getResolution()
+local shuffle_table = {}
 
 function Print_Header()
     gpu.fill(1, 1, w, h, " ")
@@ -28,6 +29,7 @@ function Initialization()
         gpu.set(1, 7 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
         gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
+        shuffle_table[i] = v
     end
     gpu.set(22, 6, " Done. Beginning shuffle...")
     os.sleep(5)
@@ -36,14 +38,14 @@ end
 function Shuffle_Playlist()
     gpu.fill(1, 6, w, h, " ")
     gpu.set(1, 7, "Shuffling playlist...")
-    for i = table.getn(list_of_ids), 1, -1 do
+    for i = table.getn(shuffle_table), 1, -1 do
         local j = math.random(1, i)
-        list_of_ids[i], list_of_ids[j] = list_of_ids[j], list_of_ids[i]
+        shuffle_table[i], shuffle_table[j] = shuffle_table[j], shuffle_table[i]
     end
     gpu.set(22, 7, " Done.")
     gpu.set(1, 8, "Shuffled list: ")
-    for i, v in ipairs(list_of_ids) do
-        gpu.set(1, 8 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
+    for i, v in ipairs(shuffle_table) do
+        gpu.set(1, 8 + i, "    I.D#" .. i .. ": " .. shuffle_table[i])
         gpu.set(20, 8 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 8 + i, "Title: " .. song_name_table[v])
     end
