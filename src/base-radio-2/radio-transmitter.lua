@@ -3,7 +3,7 @@ local term = require("term")
 local unicode = require("unicode")
 local gpu = component.gpu
 local modem = component.modem
-local song_index = require("song-index.lua")
+local song_index = require("/usr/bin/song-index.lua")
 
 local w, h = gpu.getResolution()
 local shuffle_array
