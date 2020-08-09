@@ -29,7 +29,7 @@ function Initialization()
         gpu.set(1, 7 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
         gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
-        shuffle_table[i] = v
+        table.insert(shuffle_table, v)
     end
     gpu.set(22, 6, " Done. Beginning shuffle...")
     os.sleep(5)
