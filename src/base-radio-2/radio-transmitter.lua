@@ -6,7 +6,6 @@ local modem = component.modem
 local song_index = require("song-index")
 
 local w, h = gpu.getResolution()
-local shuffle_array
 
 function Print_Header()
     gpu.setBackground(0x000000)
@@ -22,14 +21,11 @@ end
 
 function Initialization()
     gpu.set(1, 6, "Fetching I.D. list...")
+    gpu.set(1, 7, "I.Ds fetched:")
     for i,v in ipairs(list_of_ids) do
-        table.insert(shuffle_array[i], v)
+        gpu.set(1, 7 + i, "    " + list_of_ids[i])
     end
     gpu.set(22, 6, "Done.")
-    gpu.set(1, 7, "I.Ds fetched:")
-    for i,v in ipairs(shuffle_array) do
-        gpu.set(1, 7 + i, "    " + shuffle_array[i])
-    end
     term.setCursor(1, 12)
 end
 
