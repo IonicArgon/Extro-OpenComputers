@@ -76,6 +76,7 @@ function Play_Songs()
     os.sleep(1)
     gpu.fill(1, 6, w, h, " ")
     for i, v in ipairs(shuffle_table) do
+        gpu.fill(1, 6, w, h, " ")
         gpu.set(1, 6, "Now playing: " .. song_name_table[v])
         gpu.set(1, 7, "Song " .. i .. "/" .. #shuffle_table)
         modem.broadcast(23, song_name_table[v], song_length_table[v])
@@ -84,6 +85,9 @@ function Play_Songs()
             gpu.set(1, 8, "Time remaining: " .. i .. "s")
             os.sleep(1)
         end
+        gpu.fill(1, 8, w, 1, " ")
+        gpu.set(1, 8, "Beginning next song...")
+        os.sleep(3)
     end
 end
 
