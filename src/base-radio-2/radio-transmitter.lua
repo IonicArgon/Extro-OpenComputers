@@ -23,7 +23,7 @@ end
 function Initialization()
     gpu.set(1, 6, "Fetching I.D. list...")
     for i,v in ipairs(list_of_ids) do
-        table.insert(shuffle_array, i, v)
+        table.insert(shuffle_array[i], v)
     end
     gpu.set(22, 6, "Done.")
     gpu.set(1, 7, "I.Ds fetched:")
