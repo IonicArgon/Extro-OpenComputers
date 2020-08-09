@@ -8,6 +8,14 @@ local song_index = require("song-index")
 local w, h = gpu.getResolution()
 shuffle_table = {}
 
+function Shallow_Copy(t)
+    local copy = {}
+    for i, v in pairs(t) do
+        copy[i] = v
+    end
+    return copy
+end
+
 function Print_Header()
     gpu.fill(1, 1, w, h, " ")
     gpu.setBackground(0x000000)
@@ -29,8 +37,8 @@ function Initialization()
         gpu.set(1, 7 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
         gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
-        shuffle_table[i] = v
     end
+    shuffle_table = Shallow_Copy(list_of_ids)
     gpu.set(22, 6, " Done. Beginning shuffle...")
     os.sleep(5)
 end
