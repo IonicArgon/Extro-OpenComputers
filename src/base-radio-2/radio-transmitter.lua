@@ -26,7 +26,7 @@ function Print_Headers()
         gpu.fill(1, i, w, 1, unicode.char(9655))
         gpu.fill(1, i + 1, w, 1, unicode.char(9665))
     end
-    for i = (h - 4), 2 do
+    for i = (h - 3), (h - 1), 2 do
         gpu.fill(1, i, w, 1, unicode.char(9655))
         gpu.fill(1, i + 1, w, 1, unicode.char(9665))
     end
