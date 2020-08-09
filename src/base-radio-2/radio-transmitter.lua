@@ -66,10 +66,12 @@ function Intialize_Ports()
     end
     -- Will add code to ping the radio receivers later.
     Safe_Print(1, 9, "[PORT] Port initialization complete.")
+    return true
 end
 
 function Get_Song_Index()
 
+    return true
 end
 
 
@@ -78,10 +80,14 @@ function Initialize()
     Print_Headers()
     init_co_one = coroutine.create(Initialize_Ports())
     init_co_two = coroutine.create(Get_Song_Index())
-    coroutine.resume(init_co_one)
-    coroutine.resume(init_co_two)
+    local _ , _ = coroutine.resume(init_co_one), coroutine.resume(init_co_two)
 end
 
 function Main()
 
 end
+
+
+-- //Calling Main Functions//
+Initialize()
+Main()
