@@ -39,26 +39,57 @@ function Initialization()
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
     end
     shuffle_table = Shallow_Copy(list_of_ids)
-    gpu.set(22, 6, " Done. Beginning shuffle...")
-    os.sleep(5)
+    gpu.set(22, 6, " Done.")
+    for i = 5, 0, -1 do
+        gpu.set(1, 7 + #list_of_ids, "Beginning shuffle in " .. i .. "...")
+        os.sleep(1)
+    end
 end
 
 function Shuffle_Playlist()
     gpu.fill(1, 6, w, h, " ")
-    gpu.set(1, 7, "Shuffling playlist...")
+    gpu.set(1, 6, "Shuffling playlist...")
     for i = #shuffle_table, 1, -1 do
         local j = math.random(1, i)
         shuffle_table[i], shuffle_table[j] = shuffle_table[j], shuffle_table[i]
     end
-    gpu.set(22, 7, " Done.")
-    gpu.set(1, 8, "Shuffled list: ")
+    gpu.set(22, 6, " Done.")
+    gpu.set(1, 7, "Shuffled list: ")
     for i, v in ipairs(shuffle_table) do
-        gpu.set(1, 8 + i, "    I.D#" .. i .. ": " .. shuffle_table[i])
-        gpu.set(20, 8 + i, "Length: " .. song_length_table[v] .. "s")
-        gpu.set(38, 8 + i, "Title: " .. song_name_table[v])
+        gpu.set(1, 7 + i, "    I.D#" .. i .. ": " .. shuffle_table[i])
+        gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
+        gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
+    end
+    for i = 5, 0, -1 do
+        gpu.set(1, 7 + #shuffle_table, "Beginning playlist in " .. i .. "...")
+        os.sleep(1)
+    end
+end
+
+function Play_Songs()
+    gpu.fill(1, 6, w, h, " ")
+    gpu.set(1, 6, "Opening port 23 for transmission...")
+    modem.open(23)
+    gpu.set(1, 7, "Confirming port is open... ")
+    os.sleep(2)
+    gpu.set(27, 7, modem.isOpen(32))
+    os.sleep(1)
+    gpu.fill(1, 6, w, h, " ")
+    for i, v in ipairs(shuffled_table) do
+        gpu.set(1, 6, "Now playing: " .. song_name_table[v])
+        gpu.set(1, 7, "Song " .. i .. "/" .. #shuffle_table)
+        modem.broadcast(23, song_name_table[v], song_length_table[v])
+        for i = song_length_table[v], 0, -1 do
+            gpu.fill(1, 8, w, 1, " ")
+            gpu.set(1, 8, "Time remaining: " .. i .. "s")
+            os.sleep(1)
+        end
     end
 end
 
 Print_Header()
 Initialization()
-Shuffle_Playlist()
+while true do
+    Shuffle_Playlist()
+    Play_Songs()
+end
