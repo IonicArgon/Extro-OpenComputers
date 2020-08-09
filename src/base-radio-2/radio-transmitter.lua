@@ -51,3 +51,4 @@ end
 
 Print_Header()
 Initialization()
+Shuffle_Playlist()
