@@ -23,7 +23,7 @@ function Initialization()
     gpu.set(1, 6, "Fetching I.D. list...")
     gpu.set(1, 7, "I.Ds fetched:")
     for i,v in ipairs(list_of_ids) do
-        gpu.set(1, 7 + i, "    " + list_of_ids[i])
+        gpu.set(1, 7 + i, "    " .. list_of_ids[i])
     end
     gpu.set(22, 6, "Done.")
     term.setCursor(1, 12)
