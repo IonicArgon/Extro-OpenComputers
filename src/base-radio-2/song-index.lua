@@ -6,10 +6,10 @@ list_of_ids = {
 }
 
 song_length_table = {
-    [0x40] = 30,
-    [0xA8] = 30,
-    [0x8F] = 30,
-    [0x01] = 30
+    [0x40] = 10,
+    [0xA8] = 10,
+    [0x8F] = 10,
+    [0x01] = 10
 }
 
 song_name_table = {
