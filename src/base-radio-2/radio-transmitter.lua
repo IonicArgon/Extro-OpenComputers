@@ -23,7 +23,7 @@ function Initialization()
     gpu.set(1, 6, "Fetching I.D. list... ")
     gpu.set(1, 7, "I.Ds fetched:")
     for i, v in ipairs(list_of_ids) do
-        gpu.set(1, 7 + i, "    I.D#" i .. ": " .. list_of_ids[i])
+        gpu.set(1, 7 + i, "    I.D#" .. i .. ": " .. list_of_ids[i])
         gpu.set(20, 7 + i, "Length: " .. song_length_table[v] .. "s")
         gpu.set(38, 7 + i, "Title: " .. song_name_table[v])
         os.sleep(0.25)
