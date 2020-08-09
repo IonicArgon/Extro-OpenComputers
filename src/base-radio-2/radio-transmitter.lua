@@ -59,13 +59,13 @@ end
 -- Opens ports and probes them
 local Initialize_Ports = coroutine.create(function ()
     Safe_Print(1, 6, "[PORT] Port initialization begins...")
-    os.sleep(0.55)
+    os.sleep(0.7)
     Safe_Print(1, 7, "[PORT] Opening port 23...")
-    os.sleep(0.55)
+    os.sleep(0.7)
     while modem.isOpen(23) ~= true do
         modem.open(23)
         Safe_Print(1, 8, "[PORT] Checking for open port... " .. (modem.isOpen(23) and "port open." or "port closed."))
-        os.sleep(0.55)
+        os.sleep(0.7)
     end
     -- Will add code to ping the radio receivers later.
     Safe_Print(1, 9, "[PORT] Port initialization complete.")
