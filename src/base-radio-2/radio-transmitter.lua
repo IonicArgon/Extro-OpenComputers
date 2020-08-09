@@ -12,10 +12,9 @@ function Print_Header()
         gpu.fill(1, i, w, 1, unicode.char(9655))
         gpu.fill(1, i + 1, w, 1, unicode.char(9665))
     end
-    gpu.setBackground(0x660080)
     gpu.setForeground(0xFFFFFF)
-    gpu.set(1, 2, "Extro's Automatic Base Radio 2.0")
-    gpu.set(1, 3, "\"cool and good\" ~Pyro240, (Pyro#7539)")
+    gpu.set(4, 2, "Extro's Automatic Base Radio 2.0")
+    gpu.set(4, 3, "\"cool and good\" ~Pyro240, (Pyro#7539)")
 end
 
 Print_Header()
