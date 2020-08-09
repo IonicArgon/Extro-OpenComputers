@@ -15,6 +15,7 @@ function Print_Header()
     gpu.setForeground(0xFFFFFF)
     gpu.set(4, 2, "Extro's Automatic Base Radio 2.0")
     gpu.set(4, 3, "\"cool and good\" ~Pyro240, (Pyro#7539)")
+    term.setCursor(1, 6)
 end
 
 Print_Header()
