@@ -65,10 +65,11 @@ local Initialize_Ports = coroutine.create(function ()
     while modem.isOpen(23) ~= true do
         modem.open(23)
         Safe_Print(1, 8, "[PORT] Checking for open port... " .. (modem.isOpen(23) and "port open." or "port closed."))
-        os.sleep(0.7)
     end
+    os.sleep(0.7)
     -- Will add code to ping the radio receivers later.
     Safe_Print(1, 9, "[PORT] Port initialization complete.")
+    os.sleep(0.7)
     return true
 end)
 
@@ -79,6 +80,7 @@ local Get_Song_Index = coroutine.create(function ()
     shuffle_table = Shallow_Copy(list_of_ids)
     os.sleep(0.5)
     Safe_Print(1, 8, "[INDEX] Index copy complete.")
+    os.sleep(0.5)
     return true
 end)
 
