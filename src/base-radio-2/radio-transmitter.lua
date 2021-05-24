@@ -9,6 +9,9 @@ local song_index = require("song-index")
 -- //Important global variables//
 local w, h = gpu.getResolution()
 local shuffle_table = {}
+local user_input = ""
+local current_action = ""
+local current_song
 
 
 -- //Misc. Functions//
@@ -59,39 +62,54 @@ end
 -- Opens ports and probes them
 local Initialize_Ports = coroutine.create(function ()
     Safe_Print(1, 6, "[PORT] Port initialization begins...")
-    os.sleep(0.7)
+    os.sleep(0.5)
     Safe_Print(1, 7, "[PORT] Opening port 23...")
-    os.sleep(0.7)
+    os.sleep(0.5)
     while modem.isOpen(23) ~= true do
         modem.open(23)
         Safe_Print(1, 8, "[PORT] Checking for open port... " .. (modem.isOpen(23) and "port open." or "port closed."))
+        os.sleep(0.5)
     end
-    os.sleep(0.7)
     -- Will add code to ping the radio receivers later.
     Safe_Print(1, 9, "[PORT] Port initialization complete.")
-    os.sleep(0.7)
     return true
 end)
 
 local Get_Song_Index = coroutine.create(function ()
-    Safe_Print(1, 6, "[INDEX] Preparing to copy song index...")
+    Safe_Print(1, 6, "[INDEX] Preparing to copy over song index...")
     os.sleep(0.5)
     Safe_Print(1, 7, "[INDEX] Copying to shuffle index from master index...")
     shuffle_table = Shallow_Copy(list_of_ids)
     os.sleep(0.5)
-    Safe_Print(1, 8, "[INDEX] Index copy complete.")
-    os.sleep(0.5)
+    Safe_Print(1, 8, "[INDEX] Index copying complete.")
     return true
+end)
+
+local Play_Music = coroutine.create(function ()
+    while true do
+        if user_input == "play" and current_action ~= "playing" then
+            modem.broadcast(23, shuffle_table[current_song], song_length_table[shuffle_table[current_song]])
+        end
+    end
+end)
+
+local Get_User_Input = coroutine.create(function ()
+    
 end)
 
 
 -- //Main Functions//
 function Initialize()
     Print_Headers()
+    Safe_Print(1, 1, "[INIT] Initializing...")
     local _, _ = coroutine.resume(Initialize_Ports), coroutine.resume(Get_Song_Index)
+    Safe_Print(1, 1, "[INIT] Complete. Beginning to play music...")
+    os.sleep(2)
 end
 
 function Main()
+    user_input = "play"
+    current_song = 1
 
 end
 
